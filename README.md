@@ -1,5 +1,5 @@
 # 模仿流量用量显示的进度条
-# github：
+# github：https://github.com/ddcouples/web-page-loading.git
 
 使用方法
    import Loading from 'web-page-loading';

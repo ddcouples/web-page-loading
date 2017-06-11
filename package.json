@@ -9,7 +9,7 @@
     "test": "mocha --reporter spec --timeout 2000 --recursive tests/"
   },
   "keywords": [
-    "loading"
+    "web-page-loading"
   ],
   "author": "delen",
   "license": "ISC",
