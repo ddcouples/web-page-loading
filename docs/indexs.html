@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body style="height: 100%;line-height: 0;margin:0;padding: 0;">
+	<div style="position: fixed;top:0;left:0;width:100%;height:100%;background: #333;opacity: .8;display: table;">
+		<div style="display: table-cell;background: #fff;vertical-align: middle;text-align: center;">
+			<canvas id="canvas" width="60" height="60"></canvas>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function wave($c,w,h,dl,dr){
+			this.c=$c.getContext('2d');
+			this.w=w;
+			this.h=h;
+			this.dl=dl;
+			this.dr=dr;
+			this.draw= function(dl,dr){
+				this.c.beginPath();
+				this.c.moveTo(0,dl);
+				this.c.bezierCurveTo(this.h/2,dl,this.w/2,dr,this.w,dr);
+				this.c.lineTo(this.w,this.h);
+				this.c.lineTo(0,this.h);
+				this.c.closePath();
+			    this.c.fill();
+			}
+		}
+		function drawText(c,w,h,p){
+	        c.save();
+		    c.translate(w/2,h/2);
+			c.fillStyle="#6fe8c5";
+			c.textAlign = "center";
+			c.textBaseline="middle";
+			c.font = "10px arial";
+	        c.fillText(p+'%',0,0);
+			c.restore();			
+		}
+		window.requestAnimFrame = (function(){
+		   return window.requestAnimationFrame ||
+		    window.webkitRequestAnimationFrame ||
+		       window.mozRequestAnimationFrame ||
+		       function( callback ){
+		        window.setTimeout(callback, 1000 / 60);
+		       };
+		  })();
+		 
+		var can=document.querySelector('#canvas'),
+		c = can.getContext('2d'),
+		w=can.width,h=can.height,lw=3,p=0,dis=true;
+		c.fillStyle="#065886";
+		
+		c.clip();
+		var wave=new wave(can,w,h,20,10);
+        //初始角度为0
+         window.onload=function(){
+         	setTimeout(()=>{
+         		dis=false;
+         	},10000)
+         }
+		 var step = 0;
+		 function loop(){
+			  c.clearRect(0,0,w,h);
+			  c.save();
+			  let slice=random([0,900]);
+			  if(dis){
+			  	p=add(p,slice,[1,5]);
+			  }else{
+			  	p=add(p,1000,[6,9]);
+			  }
+			  
+			  if(p>=1000){
+			  	p=1000;
+			  }			
+			  c.translate(0,h*(1-p/1000));
+			  //角度增加一度
+			  step+=Math.random()>.5?3:5;
+			  //角度转换成弧度
+			  var angle = step*Math.PI/180;
+			  //矩形高度的变化量
+			  var dl = Math.sin(angle) * 5;
+			  //矩形高度的变化量(右上顶点)
+			  var dr = Math.cos(angle) * 5;
+			  wave.draw(dl,dr);
+			  c.restore();
+
+			  drawText(c,w,h,parseInt(p/10));
+			  requestAnimFrame(loop);
+		  } 
+		 loop();
+		 function add(res,dist,speed){
+		 	var _speed=random(speed);
+		 	if(res<dist&&res+_speed>dist){
+		 		res=dist;
+		 	}
+		 	if(res<dist&&res+_speed<dist){
+		 		res+=_speed;
+		 	}
+		 	return res;
+		 }
+		 function random(n){
+		 	if(typeof n ==="object"){
+		 		return Math.random()*(n[1]-n[0])+n[0]
+		 	}else{
+		 		return n;
+		 	}
+		 }
+	</script>
+</body>
+</html>
