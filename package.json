@@ -1,6 +1,6 @@
 {
   "name": "web-page-loading",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "模拟页面加载进度的插件，支持amd、cmd、commonjs！同时使用React-loading、Vue-loading适配React、Vue等前端主流框架",
   "main": "index.js",
   "scripts": {
