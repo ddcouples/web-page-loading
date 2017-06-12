@@ -1,6 +1,6 @@
 var webpack=require('webpack');//插件
 module.exports={
-	entry:__dirname+'/index.js',//入口文件配置
+	entry:__dirname+'/src/index.js',//入口文件配置
 	output:{ //出口文件配置
        path:__dirname+'/docs',
        filename:'buddle.js'
