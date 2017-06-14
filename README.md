@@ -4,10 +4,29 @@
 
 Method:
    `import Loading from 'web-page-loading';`
-    `Loading.start([dom][,w][,h]);`
+    `let option={`
+        dom: body,
+        w: w,
+        h: h,
+        lw: lw,
+        fillStyle: fillStyle,
+        strokeStyle:strokeStyle,
+        tc:tc
 
+    `}` 
+    `Loading.start([option]);`
 
-   1. dom is which You want to display the dom in load;  w is the progress's width; h is the progress's height （W, h is the same, otherwise it's not harmonious. If you like,I can't help it.）
+  
+
+   1. option setting
+      dom is which You want to display the dom in load;  
+      w is the progress's width; 
+      h is the progress's height;
+      lw is the circle's width;
+      fillStyle is the water's color;
+      strokeStyle is the circle's color;
+      tc is the text's color;
+    （W, h is the same, otherwise it's not harmonious. If you like,I can't help it.）
 
    
 
@@ -19,7 +38,12 @@ Method:
 	  Loading.end();
 	},6000)
 
-
+otherwise:
+  
+  `v-v-pageloading` directive can be used for Vue;
+  `import Loading from 'web-page-loading';`
+  `Vue.use(Loading,option)` // Use same as above;
+  in page you can use `v-v-pageloading` just like `v-v-pageloading='true'`
   # Thank You! Welcome to star  and issue it ,I am delen!
 # github：https://github.com/ddcouples/web-page-loading.git
 
