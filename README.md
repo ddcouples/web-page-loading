@@ -19,7 +19,7 @@ Method:
   
 
    1. option setting
-      dom is which You want to display the dom in load;  
+      dom is which You want to display the dom in load;  //if dom is null/undefined dom just is body;
       w is the progress's width; 
       h is the progress's height;
       lw is the circle's width;
